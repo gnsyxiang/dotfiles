@@ -1,0 +1,27 @@
+# -------
+# ssh key
+# -------
+
+# github
+Host github.com
+HostName github.com
+PreferredAuthentications publickey
+IdentityFile ~/.ssh/id_rsa_github
+
+# meian pc (allwinner)
+host code.citybrandhk.com
+hostname code.citybrandhk.com
+user meian
+port 22
+identityfile ~/.ssh/id_rsa
+
+# unisound
+Host gitlab.yzs.io
+User qiuzhenquan
+Port 10022
+
+Host gitlab-iot.yzs.io
+Port 2222
+User qiuzhenquan
+
+IdentityFile ~/.ssh/id_rsa

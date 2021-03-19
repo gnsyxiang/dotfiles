@@ -1,0 +1,117 @@
+#=============================================================================
+# dark_powered.toml --- dark powered configuration example for SpaceVim
+# Copyright (c) 2016-2017 Wang Shidong & Contributors
+# Author: Wang Shidong < wsdjeg at 163.com >
+# URL: https://spacevim.org
+# License: GPLv3
+#=============================================================================
+
+# All SpaceVim option below [option] section
+[options]
+    # set spacevim theme. by default colorscheme layer is not loaded,
+    # if you want to use more colorscheme, please load the colorscheme
+    # layer
+    colorscheme = "gruvbox"
+    colorscheme_bg = "dark"
+    
+    # Disable guicolors in basic mode, many terminal do not support 24bit
+    # true colors
+    enable_guicolors = true
+    # Disable statusline separator, if you want to use other value, please
+    # install nerd fonts
+    statusline_separator = "arrow"
+    statusline_inactive_separator = "arrow"
+    buffer_index_type = 4
+    enable_tabline_filetype_icon = true
+    enable_statusline_mode = false
+
+    # 字体设置
+    # guifont = "SauceCodePro Nerd Font Mono:h12"
+    # guifont = "FuraCode Nerd Font Mono:h12"
+    # guifont = "Source Code Pro:h12"
+
+    # Bootstrap
+    bootstrap_before = "gnsyxiang_spacevim#before"
+    bootstrap_after  = "gnsyxiang_spacevim#after"
+
+# default open layer
+# autocomplete
+# checkers
+# format
+# edit
+# ui
+# core
+# core#banner
+# core#statusline
+# core#tabline
+
+# Enable autocomplete layer
+[[layers]]
+    name = 'autocomplete'
+    auto-completion-return-key-behavior = "smart"
+    auto-completion-tab-key-behavior = "smart"
+    auto_completion_delay = 200
+    auto_completion_complete_with_key_sequence = "jk"
+    auto_completion_complete_with_key_sequence_delay = 0.1
+
+[[layers]]
+    name = 'shell'
+    default_position = 'top'
+    default_height = 30
+
+[[layers]]
+    name = "VersionControl"
+
+[[layers]]
+    name = "git"
+
+[[layers]]
+    name = "denite"
+
+[[layers]]
+    name = "foldsearch"
+
+[[layers]]
+    name = "cscope"
+
+#[[layers]]
+#    name = "gtags"
+#    enable = 'executable("global")'
+#    gtagslabel = "pygments"
+
+[[layers]]
+    name = "tools"
+
+# c/c++
+[[layers]]
+    name = "lang#c"
+    clang_executable = "/usr/bin/clang"
+    [layer.clang_std]
+        c = "c99"
+        cpp = "c++1z"
+        objc = "c11"
+        objcpp = "c++1z"
+
+[[layers]]
+    name = "lang#sh"
+
+[[layers]]
+    name = "lang#markdown"
+
+# 添加自定义插件
+[[custom_plugins]]
+    name = "vim-scripts/DoxygenToolkit.vim"
+    merged = 0
+
+[[custom_plugins]]
+    name = "vim-scripts/Mark"
+    merged = 0
+
+[[custom_plugins]]
+    name = "gcmt/wildfire.vim"
+    merged = 0
+
+[[custom_plugins]]
+    name = "tpope/vim-surround"
+    merged = 0
+

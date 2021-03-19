@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+# ----------
+# toolchains
+# ----------
+
+# hi3536d
+export HI3536D_GCC_PATH=$HOME/data/opt/toolchains/hisi/arm-hisiv510-linux/target/bin
+export PATH=$HI3536D_GCC_PATH:$PATH
+
+
+# ----
+# temp
+# ----
+export MINIGUI_INSTALL_PATH=$HOME/data/git/minigui/install
+
+export PATH=$PATH:$MINIGUI_INSTALL_PATH/bin
+export MG_CFG_PATH=$MINIGUI_INSTALL_PATH
+

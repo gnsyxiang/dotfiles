@@ -1,0 +1,14 @@
+[user]
+	name = zhenquan.qiu 
+	email = gnsyxiang@163.com
+[alias]
+	st = status
+	co = checkout
+	ci = commit
+	br = branch
+	lg = log -8 --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lglist = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[color]
+	ui = auto
+[core]
+	quotepath = false

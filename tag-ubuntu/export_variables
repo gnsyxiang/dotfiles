@@ -1,19 +1,31 @@
 #!/usr/bin/env bash
 
+# ------------
+# export bin
+# ------------
+export UOS_PATH=$HOME/data/usr/local
+export PATH=$PATH:$UOS_PATH/bin:/usr/local/go/bin
+
+# ------------
+# install libs
+# ------------
+export INSTALL_PREFIX=$HOME/data/usr/local
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$INSTALL_PREFIX/lib/pkgconfig
+
 # ----------
 # toolchains
 # ----------
 
 # hi3536d
 export HI3536D_GCC_PATH=$HOME/data/opt/toolchains/hisi/arm-hisiv510-linux/target/bin
-export PATH=$HI3536D_GCC_PATH:$PATH
+export PATH=$PATH:$HI3536D_GCC_PATH
 
 
-# ----
-# temp
-# ----
-export MINIGUI_INSTALL_PATH=$HOME/data/git/minigui/install
+# -------
+# minigui
+# -------
+export PATH=$PATH:$INSTALL_PREFIX/bin
+export MG_CFG_PATH=$INSTALL_PREFIX
 
-export PATH=$PATH:$MINIGUI_INSTALL_PATH/bin
-export MG_CFG_PATH=$MINIGUI_INSTALL_PATH
+
 

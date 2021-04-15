@@ -27,5 +27,15 @@ export PATH=$PATH:$HI3536D_GCC_PATH
 export PATH=$PATH:$INSTALL_PREFIX/bin
 export MG_CFG_PATH=$INSTALL_PREFIX
 
+# ----
+# java
+# ----
+export JAVA_HOME=$HOME/data/opt/jdk1.8.0_144
+export JRE_HOME=$JAVA_HOME/jre
+export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
+export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 
-
+# ------------
+# plantuml jar
+# ------------
+export PLANTUML_JAR_PATH=$HOME/data/usr/local/lib/plantuml.jar

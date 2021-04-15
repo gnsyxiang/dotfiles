@@ -13,7 +13,6 @@
     # layer
     colorscheme = "gruvbox"
     colorscheme_bg = "dark"
-    
     # Disable guicolors in basic mode, many terminal do not support 24bit
     # true colors
     enable_guicolors = true
@@ -25,16 +24,16 @@
     enable_tabline_filetype_icon = true
     enable_statusline_mode = false
 
-    # 字体设置
-    # guifont = "SauceCodePro Nerd Font Mono:h12"
-    # guifont = "FuraCode Nerd Font Mono:h12"
-    # guifont = "Source Code Pro:h12"
+    default_indent = 4
+
+    autocomplete_method = "coc"
 
     # Bootstrap
-    bootstrap_before = "gnsyxiang_spacevim#before"
-    bootstrap_after  = "gnsyxiang_spacevim#after"
+    bootstrap_before = "myspacevim#before"
+    bootstrap_after  = "myspacevim#after"
 
-# default open layer
+# By default SpaceVim enable these layers:
+#
 # autocomplete
 # checkers
 # format
@@ -45,14 +44,19 @@
 # core#statusline
 # core#tabline
 
-# Enable autocomplete layer
+# 禁用 SpaceVim 的 checkers layer, 让 coc.nvim 来管理
 [[layers]]
-    name = 'autocomplete'
-    auto-completion-return-key-behavior = "smart"
-    auto-completion-tab-key-behavior = "smart"
-    auto_completion_delay = 200
-    auto_completion_complete_with_key_sequence = "jk"
-    auto_completion_complete_with_key_sequence_delay = 0.1
+    name = "checkers"
+    enable = false
+
+# Enable autocomplete layer
+# [[layers]]
+#     name = 'autocomplete'
+#     auto_completion_return_key_behavior = "complete"
+#     auto_completion_tab_key_behavior = "smart"
+
+[[layers]]
+    name = "denite"
 
 [[layers]]
     name = 'shell'
@@ -60,37 +64,7 @@
     default_height = 30
 
 [[layers]]
-    name = "VersionControl"
-
-[[layers]]
-    name = "git"
-
-[[layers]]
-    name = "denite"
-
-[[layers]]
-    name = "foldsearch"
-
-[[layers]]
-    name = "cscope"
-
-#[[layers]]
-#    name = "gtags"
-#    enable = 'executable("global")'
-#    gtagslabel = "pygments"
-
-[[layers]]
     name = "tools"
-
-# c/c++
-[[layers]]
-    name = "lang#c"
-    clang_executable = "/usr/bin/clang"
-    [layer.clang_std]
-        c = "c99"
-        cpp = "c++1z"
-        objc = "c11"
-        objcpp = "c++1z"
 
 [[layers]]
     name = "lang#sh"
@@ -98,20 +72,100 @@
 [[layers]]
     name = "lang#markdown"
 
+[[layers]]
+  name = "VersionControl"
+  enable-gtm-status = true
+
+[[layers]]
+  name = "git"
+  git-plugin = "fugitive"
+
+
 # 添加自定义插件
 [[custom_plugins]]
     name = "vim-scripts/DoxygenToolkit.vim"
-    merged = 0
+    merged = false
 
 [[custom_plugins]]
     name = "vim-scripts/Mark"
-    merged = 0
+    merged = false
 
 [[custom_plugins]]
     name = "gcmt/wildfire.vim"
-    merged = 0
+    merged = false
 
 [[custom_plugins]]
     name = "tpope/vim-surround"
-    merged = 0
+    merged = false
+
+[[custom_plugins]]
+    name = "ferrine/md-img-paste.vim"
+    merged = false
+
+# 以悬浮窗口的形式打开终端
+[[custom_plugins]]
+    name = 'voldikss/vim-floaterm'
+
+# 从 http://cplusplus.com/ 和 http://cppreference.com/ 获取文档
+[[custom_plugins]]
+    name = 'skywind3000/vim-cppman'
+
+# 基于lsp的高亮插件
+[[custom_plugins]]
+    name = 'jackguo380/vim-lsp-cxx-highlight'
+
+# 快速编辑 markdown 表格
+[[custom_plugins]]
+    name = 'dhruvasagar/vim-table-mode'
+    merged = false
+
+# coc.nvim 核心配置，不要删除
+[[custom_plugins]]
+    name = 'neoclide/coc.nvim'
+    merged = false
+
+# 代码片段库
+[[custom_plugins]]
+    name = 'honza/vim-snippets'
+    merged = false
+
+# 显示当前是第几个文本项
+[[custom_plugins]]
+    name = 'google/vim-searchindex'
+    merged = false
+
+[[custom_plugins]]
+    name = 'junegunn/fzf.vim'
+    merged = false
+
+# 主要用于快速搜索文件和 buffer
+[[custom_plugins]]
+    name = "Yggdroot/LeaderF"
+    build = "./install.sh"
+    merged = false
+
+#[[custom_plugins]]
+#    name = 'antoinemadec/coc-fzf'
+#    branch = 'release'
+#    merged = false
+
+# 以悬浮窗口的形式打开终端
+[[custom_plugins]]
+    name = 'voldikss/vim-floaterm'
+    merged = false
+
+# PlantUML语法插件
+[[custom_plugins]]
+    name = 'aklt/plantuml-syntax'
+    merged = false
+
+# 用浏览器打开编辑文件
+[[custom_plugins]]
+    name = 'tyru/open-browser.vim'
+    merged = false
+
+# PlantUML预览插件
+[[custom_plugins]]
+    name = 'weirongxu/plantuml-previewer.vim'
+    merged = false
 

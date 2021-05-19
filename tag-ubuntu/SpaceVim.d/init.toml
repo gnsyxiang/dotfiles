@@ -25,6 +25,7 @@
     enable_statusline_mode = false
 
     default_indent = 4
+    spacevim_expand_tab = 4
 
     autocomplete_method = "coc"
 

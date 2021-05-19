@@ -1,41 +1,73 @@
 #!/usr/bin/env bash
 
-# ------------
-# export bin
-# ------------
-export UOS_PATH=$HOME/data/usr/local
-export PATH=$PATH:$UOS_PATH/bin:/usr/local/go/bin
-
-# ------------
-# install libs
-# ------------
-export INSTALL_PREFIX=$HOME/data/usr/local
-export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$INSTALL_PREFIX/lib/pkgconfig
-
-# ----------
+# ==========
 # toolchains
-# ----------
+# ==========
 
-# hi3536d
-export HI3536D_GCC_PATH=$HOME/data/opt/toolchains/hisi/arm-hisiv510-linux/target/bin
-export PATH=$PATH:$HI3536D_GCC_PATH
+install_path=$HOME/data/install
+toolchains_path=$HOME/data/opt/toolchains
 
+# ---------
+# hisi info
+# ---------
+hisi_install_path=$install_path/hisi-linux
+hisi_toolchains_path=$toolchains_path/hisi-linux
+hisi_target=
 
-# -------
+# hisiv510
+hisi_target=arm-hisiv510-linux
+export HISI_V510_PREFIX=$hisi_install_path/$hisi_target
+export HISI_V510_GCC_PATH=$hisi_toolchains_path/$hisi_target/bin
+# export PATH=$PATH:$HISI_V510_GCC_PATH
+
+# hisiv500
+hisi_target=arm-hisiv500-linux
+export HISI_V500_PREFIX=$hisi_install_path/$hisi_target
+export HISI_V500_GCC_PATH=$hisi_toolchains_path/$hisi_target/bin
+# export PATH=$PATH:$HISI_V500_GCC_PATH
+
+# himix200
+hisi_target=arm-himix200-linux
+export HISI_MIX200_PREFIX=$hisi_install_path/$hisi_target
+export HISI_MIX200_GCC_PATH=$hisi_toolchains_path/$hisi_target/bin
+export PATH=$PATH:$HISI_MIX200_GCC_PATH
+
+# unione
+export UNIONE_PREFIX=$install_path/unione
+export UNIONE_GCC_PATH=$toolchains_path/unione/arm-linux-hf-4.9/bin
+# export PATH=$PATH:$UNIONE_GCC_PATH
+
+# ==================
+# export bin and lib
+# ==================
+
+# path
+export UBUNTU_PREFIX=$HOME/data/usr/local
+
+# bin
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$UBUNTU_PREFIX/bin
+
+# lib
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/x86_64-linux-gnu/pkgconfig
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$UBUNTU_PREFIX/lib/pkgconfig
+
+# =======
 # minigui
-# -------
-export PATH=$PATH:$INSTALL_PREFIX/bin
-export MG_CFG_PATH=$INSTALL_PREFIX
+# =======
+export MG_CFG_PATH=$UBUNTU_PREFIX
 
-# ----
+# ====
 # java
-# ----
+# ====
 export JAVA_HOME=$HOME/data/opt/jdk1.8.0_144
 export JRE_HOME=$JAVA_HOME/jre
 export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH
+
 export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin
 
-# ------------
+# ============
 # plantuml jar
-# ------------
-export PLANTUML_JAR_PATH=$HOME/data/usr/local/lib/plantuml.jar
+# ============
+# export PLANTUML_JAR_PATH=$UBUNTU_PREFIX/lib/plantuml.jar
+

@@ -4,6 +4,13 @@ func! myspacevim#before() abort
     " set incsearch
     " set hlsearch
 
+    " set smartindent
+    " set tabstop=4                       " tab width
+    " set softtabstop=4                   " backspace
+    " set shiftwidth=4                    " indent width
+    " set expandtab                       " expand tab to space
+    " set %retab!                             " 全部tab替换成空格
+
     set clipboard+=unnamed
     set clipboard+=unnamedplus
 
@@ -203,10 +210,5 @@ func! myspacevim#before() abort
 endf
 
 func! myspacevim#after() abort
-    set smartindent
-    set tabstop=4                       " tab width
-    set softtabstop=4                   " backspace
-    set shiftwidth=4                    " indent width
-    set expandtab                       " expand tab to space
 endf
 

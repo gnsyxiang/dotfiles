@@ -90,6 +90,17 @@ func! myspacevim#before() abort
     " let g:floaterm_keymap_new    = '<C-n>'
     " let g:floaterm_keymap_toggle = '<C-h>'
 
+    let g:vimfiler_ignore_pattern = [
+                \ '^\.git$',
+                \ '^\.DS_Store$',
+                \ '^\.init\.vim-rplugin\~$',
+                \ '^\.netrwhist$',
+                \ '\.class$',
+                \ '\.o$',
+                \ '\.lo$',
+                \ '^\.'
+                \]
+
     nnoremap ; :
     :command W w
     :command WQ wq

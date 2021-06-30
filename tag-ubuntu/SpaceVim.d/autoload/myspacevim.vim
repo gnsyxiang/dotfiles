@@ -86,9 +86,9 @@ func! myspacevim#before() abort
     autocmd FileType c,cpp noremap <C-]> <Esc>:execute "cppman " . expand("<cword>")<CR>
 
     " floaterm
-    let g:floaterm_keymap_prev   = '<C-p>'
-    let g:floaterm_keymap_new    = '<C-n>'
-    let g:floaterm_keymap_toggle = '<C-h>'
+    " let g:floaterm_keymap_prev   = '<C-p>'
+    " let g:floaterm_keymap_new    = '<C-n>'
+    " let g:floaterm_keymap_toggle = '<C-h>'
 
     nnoremap ; :
     :command W w

@@ -57,7 +57,7 @@
 #     auto_completion_tab_key_behavior = "smart"
 
 [[layers]]
-    name = "denite"
+    name = "unite"
 
 [[layers]]
     name = 'shell'
@@ -104,8 +104,8 @@
     merged = false
 
 # 以悬浮窗口的形式打开终端
-[[custom_plugins]]
-    name = 'voldikss/vim-floaterm'
+# [[custom_plugins]]
+#     name = 'voldikss/vim-floaterm'
 
 # 从 http://cplusplus.com/ 和 http://cppreference.com/ 获取文档
 [[custom_plugins]]

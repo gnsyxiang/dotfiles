@@ -1,0 +1,32 @@
+{
+  "name": "dotfiles",
+  "version": "0.0.1",
+  "description": "Centrally manage profiles. (集中管理配置文件)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gnsyxiang/dotfiles.git"
+  },
+  "keywords": [
+    "dotfiles",
+    "rcm",
+    "gnsyxiang"
+  ],
+  "author": "gnsyxiang",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/gnsyxiang/dotfiles/issues"
+  },
+  "homepage": "https://github.com/gnsyxiang/dotfiles#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

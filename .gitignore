@@ -1,8 +1,9 @@
 
 
 
-
-
-
 # ignore dir
 node_modules/
+
+
+# ignore file
+CHANGELOG.md

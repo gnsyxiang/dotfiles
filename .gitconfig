@@ -1,0 +1,14 @@
+[user]
+	name = zhenquan.qiu
+	email = gnsyxiang@163.com
+
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	mg = merge
+	ci = commit
+[init]
+	defaultBranch = main
+[color]
+	ui = auto

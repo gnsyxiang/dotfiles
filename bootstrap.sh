@@ -8,6 +8,7 @@ install_path=/usr/local/bin
 
 # 安装常用软件
 if grep -q "Ubuntu" /etc/os-release; then
+
     version=$(grep 'VERSION_ID' /etc/os-release | cut -d '"' -f 2)
     case "$version" in
         "20.04")
@@ -16,6 +17,10 @@ if grep -q "Ubuntu" /etc/os-release; then
             echo "Ubuntu 20.04 (Focal Fossa)"
             echo "=================================================="
             echo -n -e "\e[0m"
+
+            neovim_version=nvim-0.10.4
+            lazygit_version=lazygit-0.53.0
+
             ;;
         "22.04")
             echo -n -e "\e[32m"
@@ -24,17 +29,30 @@ if grep -q "Ubuntu" /etc/os-release; then
             echo "=================================================="
             echo -n -e "\e[0m"
 
-            sudo rm -rf \
-                ${install_path}/nvim \
-                ${install_path}/lazygit
+            neovim_version=nvim-0.11.4
+            lazygit_version=lazygit-0.55.0
 
-            sudo ln -s ${soft_path}/neovim/nvim-0.11.4/bin/nvim ${install_path}/nvim
-            sudo ln -s ${soft_path}/lazygit/lazygit-0.55.0/lazygit ${install_path}/lazygit
             ;;
         *)
             echo "未知版本: $version"
             ;;
     esac
+
+    apps=(
+        "nvim:${soft_path}/neovim:${neovim_version}"
+        "lazygit:${soft_path}/lazygit:${lazygit_version}"
+    )
+
+    for app_info in "${apps[@]}"; do
+        IFS=':' read -r _app_name _app_path _version <<< "$app_info"
+
+        if [ ! -d "${_app_path}/${_version}" ]; then
+            tar xjf "${_app_path}/${_version}.tar.bz2" -C "${_app_path}"
+        fi
+
+        sudo rm -rf "${install_path}/${_app_name}"
+        sudo ln -s "${_app_path}/${_version}/bin/${_app_name}" "${install_path}/${_app_name}"
+    done
 
     sudo apt update
 

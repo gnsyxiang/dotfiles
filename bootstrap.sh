@@ -56,9 +56,12 @@ if grep -q "Ubuntu" /etc/os-release; then
 
     sudo apt update
 
-    sudo apt install -y tree net-tools tig silversearcher-ag
-    sudo apt install -y git vim xclip
+    sudo apt install -y tree net-tools tig silversearcher-ag openssh-server open-vm-tools open-vm-tools-desktop samba
+    sudo apt install -y git yadm vim xclip
     sudo apt install -y autoconf libtool make bear
+
+    sudo systemctl enable --now ssh
+    sudo ufw allow ssh
 
     rm -rf ~/.config/nvim
     ln -s ~/xia/git/nv_config ~/.config/nvim

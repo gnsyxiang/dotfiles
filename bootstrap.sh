@@ -57,8 +57,8 @@ if grep -q "Ubuntu" /etc/os-release; then
     sudo apt update
 
     sudo apt install -y tree curl net-tools tig silversearcher-ag openssh-server open-vm-tools open-vm-tools-desktop samba
-    sudo apt install -y git yadm vim xclip
-    sudo apt install -y autoconf libtool make bear
+    sudo apt install -y git yadm vim xclip ripgrep fd-find pkg-config
+    sudo apt install -y autoconf libtool make bear cmake gawk minicom
 
     sudo systemctl enable --now ssh
     sudo ufw allow ssh

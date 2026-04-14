@@ -1,0 +1,214 @@
+
+alias nv='nvim'
+
+alias bear-make='bear -- make -j'
+
+alias lg='lazygit'
+
+# for pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - bash)"
+eval "$(pyenv virtualenv-init -)"
+
+# for repo
+export REPO_URL=/mnt/xia-disk/soft/repo/repo-git
+export REPO_REV=main
+
+function repo-push() {
+    local remote="$1"
+    local branch="$2"
+
+    if [ -z "$remote" ] || [ -z "$branch" ]; then
+        echo "Usage: repo-push <remote> <branch>"
+        echo "Example: repo-push xia dev"
+        return 1
+    fi
+
+    repo forall -c '
+        if ! git remote get-url "'"$remote"'" >/dev/null 2>&1; then
+            exit 0
+        fi
+
+        echo "------------------------------------------------------"
+        echo "🔷 仓库: $REPO_PROJECT, 分支: '$remote/$branch'"
+
+        tmpfile="/tmp/gitout.$$.$REPO_PROJECT"
+        git push '$remote' '$branch' > "$tmpfile" 2>&1
+        ret=$?
+        cat "$tmpfile" && rm -f "$tmpfile"
+        if [ $ret -ne 0 ]; then
+            echo "❌❌❌推送失败❌❌❌"
+        fi
+    '
+}
+
+function repo-push-tags() {
+    local remote="$1"
+    local branch="$2"
+
+    if [ -z "$remote" ]; then
+        echo "Usage: repo-push <remote>"
+        echo "Example: repo-push xia"
+        return 1
+    fi
+
+    repo forall -c '
+        if ! git remote get-url "'"$remote"'" >/dev/null 2>&1; then
+            exit 0
+        fi
+
+        echo "------------------------------------------------------"
+        echo "🔷 仓库: $REPO_PROJECT, 分支: '$remote/$branch'"
+
+        tmpfile="/tmp/gitout.$$.$REPO_PROJECT"
+        git push '$remote' --tags > "$tmpfile" 2>&1
+        ret=$?
+        cat "$tmpfile" && rm -f "$tmpfile"
+        if [ $ret -ne 0 ]; then
+            echo "❌❌❌推送失败❌❌❌"
+        fi
+    '
+}
+
+function repo-pull() {
+    local remote="$1"
+    local branch="$2"
+
+    if [ -z "$remote" ] || [ -z "$branch" ]; then
+        echo "Usage: repo-pull <remote> <branch>"
+        echo "Example: repo-pull xia dev"
+        return 1
+    fi
+
+    repo forall -c '
+        if ! git remote get-url "'"$remote"'" >/dev/null 2>&1; then
+            exit 0
+        fi
+
+        echo "------------------------------------------------------"
+        echo "🔷 仓库: $REPO_PROJECT, 分支: '$remote/$branch'"
+
+        tmpfile="/tmp/gitout.$$.$REPO_PROJECT"
+        git pull '$remote' '$branch' > "$tmpfile" 2>&1
+        ret=$?
+        cat "$tmpfile" && rm -f "$tmpfile"
+        if [ $ret -ne 0 ]; then
+            echo "❌❌❌拉取失败❌❌❌"
+        fi
+    '
+}
+
+function repo-pull-tags() {
+    local remote="$1"
+
+    if [ -z "$remote" ]; then
+        echo "Usage: repo-pull <remote>"
+        echo "Example: repo-pull xia"
+        return 1
+    fi
+
+    repo forall -c '
+        if ! git remote get-url "'"$remote"'" >/dev/null 2>&1; then
+            exit 0
+        fi
+
+        echo "------------------------------------------------------"
+        echo "🔷 仓库: $REPO_PROJECT, 分支: '$remote/$branch'"
+
+        tmpfile="/tmp/gitout.$$.$REPO_PROJECT"
+        git pull '$remote' --tags > "$tmpfile" 2>&1
+        ret=$?
+        cat "$tmpfile" && rm -f "$tmpfile"
+        if [ $ret -ne 0 ]; then
+            echo "❌❌❌拉取失败❌❌❌"
+        fi
+    '
+}
+
+function repo-merge() {
+    local branch_to="$1"
+    local branch_from="$2"
+
+    if [ -z "$branch_to" ] || [ -z "$branch_from" ]; then
+        echo "Usage: repo-merge <branch_to> <branch_from>"
+        echo "Example: repo-merge dev feat/add-func"
+        return 1
+    fi
+
+
+    repo forall -c '
+        echo "------------------------------------------------------"
+        echo "🔷 仓库: $REPO_PROJECT, 分支: '$branch_to' '$branch_from'"
+
+        tmpfile="/tmp/gitout.$$.$REPO_PROJECT"
+        git co '$branch_to' > "$tmpfile" 2>&1
+        cat "$tmpfile" && rm -f "$tmpfile"
+        git merge --no-ff --no-edit '$branch_from' > "$tmpfile" 2>&1
+        ret=$?
+        cat "$tmpfile" && rm -f "$tmpfile"
+        if [ $ret -ne 0 ]; then
+            echo "❌❌❌合并分支失败❌❌❌"
+        fi
+    '
+}
+
+function repo-new-branch() {
+    local branch="$1"
+
+    if [ -z "$branch" ]; then
+        echo "Usage: repo-new-branch <branch>"
+        echo "Example: repo-new-branch feat/add-func"
+        return 1
+    fi
+
+
+    repo forall -c '
+        echo "------------------------------------------------------"
+        echo "🔷 仓库: $REPO_PROJECT, 分支: '$branch'"
+
+        tmpfile="/tmp/gitout.$$.$REPO_PROJECT"
+        git co -b '$branch' > "$tmpfile" 2>&1
+        ret=$?
+        cat "$tmpfile" && rm -f "$tmpfile"
+        if [ $ret -ne 0 ]; then
+            echo "❌❌❌创建分支失败❌❌❌"
+        fi
+    '
+}
+
+function repo-git_br_d() {
+    local branch="$1"
+
+    if [ -z "$branch" ]; then
+        echo "Usage: repo-git_br_d <branch>"
+        echo "Example: repo-git_br_d feat/add-func"
+        return 1
+    fi
+
+
+    repo forall -c '
+        echo "------------------------------------------------------"
+        echo "🔷 仓库: $REPO_PROJECT, 分支: '$branch'"
+
+        tmpfile="/tmp/gitout.$$.$REPO_PROJECT"
+        git br -d '$branch' > "$tmpfile" 2>&1
+        ret=$?
+        cat "$tmpfile" && rm -f "$tmpfile"
+        if [ $ret -ne 0 ]; then
+            echo "❌❌❌删除分支失败❌❌❌"
+        fi
+    '
+}
+
+function repo-git_st() {
+    repo forall -c '
+        echo "------------------------------------------------------"
+        echo "🔷 仓库: $REPO_PROJECT
+
+        tmpfile="/tmp/gitout.$$.$REPO_PROJECT"
+        git st > "$tmpfile" 2>&1
+        cat "$tmpfile" && rm -f "$tmpfile"
+    '
+}
+

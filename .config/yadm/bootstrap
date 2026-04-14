@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -eu
+
+BOOTSTRAP_DIR="${BASH_SOURCE[0]}.d"
+
+if [[ -d "$BOOTSTRAP_DIR" ]]; then
+    echo "running bootstrap.d script ..."
+
+    find -L "$BOOTSTRAP_DIR" -type f -name "*.sh" -perm -111 | sort | while read -r script; do
+        echo "exec --> $script"
+
+        bash "$script"
+    done
+fi
+
